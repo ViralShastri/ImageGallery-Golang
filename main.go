@@ -5,22 +5,17 @@ import (
 	"net/http"
 )
 
-func handlerFunc(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html")
-	fmt.Fprintf(w, "<h1>Welcome to my First Web Application in GoLang</h1>")
-}
-
 func main() {
-
-	http.HandleFunc("/viral", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "<h1>Welcome to my First Web Application in GoLang As Viral</h1>")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+		if r.URL.Path == "/" {
+			fmt.Fprintf(w, "<h1>Welcome to my First Web Application in GoLang</h1>")
+		} else if r.URL.Path == "/contact-us" {
+			fmt.Fprint(w, "To get in touch, please send us a email at <a href=\"mailto:support@github.com\">support@github.com</a>.")
+		} else {
+			w.WriteHeader(http.StatusNotFound)
+			fmt.Fprint(w, "<h1>404 Page Not Found</h1><p>We couldn't find the page you're looking for :(</p>")
+		}
 	})
-
-	http.HandleFunc("/", handlerFunc)
-
-	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	// 	fmt.Fprintf(w, "<h1>Welcome to my First Web Application in GoLang</h1>")
-	// }) // Same as Above
-
 	http.ListenAndServe(":3000", nil)
 }
