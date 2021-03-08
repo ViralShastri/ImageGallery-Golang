@@ -5,7 +5,7 @@ import "html/template"
 
 // NewView Function
 func NewView(files ...string) *View {
-	files = append(files, "./layouts/footer.gohtml")
+	files = append(files, "views/layouts/footer.gohtml")
 	template, err := template.ParseFiles(files...)
 	if err != nil {
 		panic(err)
