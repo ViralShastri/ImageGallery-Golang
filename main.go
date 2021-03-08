@@ -22,12 +22,17 @@ func pageNotFound(w http.ResponseWriter, r *http.Request) {
 	if err := pageNotFoundView.Template.Execute(w, nil); err != nil {
 		panic(err)
 	}
+
+	if err := pageNotFoundView.Template.ExecuteTemplate(w, pageNotFoundView.Layout, nil); err != nil {
+		panic(err)
+	}
+
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	// fmt.Fprint(w, "<h1>Welcome to my First Web Application in GoLang</h1>")
-	if err := homeView.Template.Execute(w, nil); err != nil {
+	if err := homeView.Template.ExecuteTemplate(w, homeView.Layout, nil); err != nil {
 		panic(err)
 	}
 }
@@ -41,7 +46,7 @@ func faq(w http.ResponseWriter, r *http.Request) {
 	// </ul>
 	// `)
 
-	if err := faqView.Template.Execute(w, nil); err != nil {
+	if err := faqView.Template.ExecuteTemplate(w, faqView.Layout, nil); err != nil {
 		panic(err)
 	}
 
@@ -50,7 +55,7 @@ func faq(w http.ResponseWriter, r *http.Request) {
 func contact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	// fmt.Fprint(w, "To get in touch, please send us a email at <a href=\"mailto:support@github.com\">support@github.com</a>.")
-	if err := contactView.Template.Execute(w, nil); err != nil {
+	if err := contactView.Template.ExecuteTemplate(w, contactView.Layout, nil); err != nil {
 		panic(err)
 	}
 
@@ -58,10 +63,10 @@ func contact(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	homeView = views.NewView("views/home.gohtml")
-	contactView = views.NewView("views/contact.gohtml")
-	faqView = views.NewView("views/faq.gohtml")
-	pageNotFoundView = views.NewView("views/404.gohtml")
+	homeView = views.NewView("bootstrap", "views/home.gohtml")
+	contactView = views.NewView("bootstrap", "views/contact.gohtml")
+	faqView = views.NewView("bootstrap", "views/faq.gohtml")
+	pageNotFoundView = views.NewView("bootstrap", "views/404.gohtml")
 
 	router := mux.NewRouter()
 

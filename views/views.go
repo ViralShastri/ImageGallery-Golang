@@ -4,16 +4,17 @@ package views
 import "html/template"
 
 // NewView Function
-func NewView(files ...string) *View {
-	files = append(files, "views/layouts/footer.gohtml")
+func NewView(layout string, files ...string) *View {
+	files = append(files, "views/layouts/footer.gohtml", "views/layouts/bootstrap.gohtml")
 	template, err := template.ParseFiles(files...)
 	if err != nil {
 		panic(err)
 	}
-	return &View{*template}
+	return &View{*template, layout}
 }
 
 // View Structure for creating view
 type View struct {
 	Template template.Template
+	Layout   string
 }
