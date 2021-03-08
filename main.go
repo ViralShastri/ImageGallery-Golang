@@ -60,22 +60,22 @@ func main() {
 
 	var err error
 
-	homeTemplate, err = template.ParseFiles("views/home.html")
+	homeTemplate, err = template.ParseFiles("views/home.gohtml", "views/layouts/footer.gohtml")
 	if err != nil {
 		panic(err)
 	}
 
-	contactTemplate, err = template.ParseFiles("views/contact.html")
+	contactTemplate, err = template.ParseFiles("views/contact.gohtml", "views/layouts/footer.gohtml")
 	if err != nil {
 		panic(err)
 	}
 
-	faqTemplate, err = template.ParseFiles("views/faq.html")
+	faqTemplate, err = template.ParseFiles("views/faq.gohtml", "views/layouts/footer.gohtml")
 	if err != nil {
 		panic(err)
 	}
 
-	pageNotFoundTemplate, err = template.ParseFiles("views/404.html")
+	pageNotFoundTemplate, err = template.ParseFiles("views/404.gohtml", "views/layouts/footer.gohtml")
 	if err != nil {
 		panic(err)
 	}
