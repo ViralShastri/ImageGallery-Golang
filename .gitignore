@@ -60,6 +60,7 @@ builds/**/images/*
 # Don't include our binary
 main
 images/**
+exp
 
 .config
 notes/**
