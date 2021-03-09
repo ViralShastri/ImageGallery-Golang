@@ -19,22 +19,27 @@ func pageNotFound(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	w.WriteHeader(http.StatusNotFound)
 	// fmt.Fprint(w, "<h1>404 Page Not Found</h1><p>We couldn't find the page you're looking for :(</p>")
-	if err := pageNotFoundView.Template.Execute(w, nil); err != nil {
-		panic(err)
-	}
+	// if err := pageNotFoundView.Template.Execute(w, nil); err != nil {
+	// 	panic(err)
+	// }
 
-	if err := pageNotFoundView.Template.ExecuteTemplate(w, pageNotFoundView.Layout, nil); err != nil {
-		panic(err)
-	}
+	// if err := pageNotFoundView.Template.ExecuteTemplate(w, pageNotFoundView.Layout, nil); err != nil {
+	// 	panic(err)
+	// }
+
+	must(pageNotFoundView.Render(w, nil))
 
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	// fmt.Fprint(w, "<h1>Welcome to my First Web Application in GoLang</h1>")
-	if err := homeView.Template.ExecuteTemplate(w, homeView.Layout, nil); err != nil {
-		panic(err)
-	}
+	// if err := homeView.Template.ExecuteTemplate(w, homeView.Layout, nil); err != nil {
+	// 	panic(err)
+	// }
+
+	must(homeView.Render(w, nil))
+
 }
 
 func faq(w http.ResponseWriter, r *http.Request) {
@@ -46,18 +51,22 @@ func faq(w http.ResponseWriter, r *http.Request) {
 	// </ul>
 	// `)
 
-	if err := faqView.Template.ExecuteTemplate(w, faqView.Layout, nil); err != nil {
-		panic(err)
-	}
+	// if err := faqView.Template.ExecuteTemplate(w, faqView.Layout, nil); err != nil {
+	// 	panic(err)
+	// }
+
+	must(faqView.Render(w, nil))
 
 }
 
 func contact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	// fmt.Fprint(w, "To get in touch, please send us a email at <a href=\"mailto:support@github.com\">support@github.com</a>.")
-	if err := contactView.Template.ExecuteTemplate(w, contactView.Layout, nil); err != nil {
-		panic(err)
-	}
+	// if err := contactView.Template.ExecuteTemplate(w, contactView.Layout, nil); err != nil {
+	// 	panic(err)
+	// }
+
+	must(contactView.Render(w, nil))
 
 }
 
@@ -79,4 +88,10 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":3000", router))
 
+}
+
+func must(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
