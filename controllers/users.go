@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/ViralShastri/usegolang/views"
@@ -21,10 +22,23 @@ type Users struct {
 	NewView *views.View
 }
 
-// New is a Users type method
-// To Render a Users View
+// New is used to render a form
+// where New User can create a new account
+//
+// GET /signup
 func (users *Users) New(rw http.ResponseWriter, r *http.Request) {
 	if err := users.NewView.Render(rw, nil); err != nil {
 		panic(err)
 	}
+}
+
+// Create is used to process the signup form
+// when a user submit it.
+// This is used to create a new user account
+//
+// POST /signup
+func (users *Users) Create(rw http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	fmt.Fprintln(rw, r.Form.Get("email"), r.Form.Get("password"))
+	fmt.Fprintln(rw, "This is a temporary response")
 }

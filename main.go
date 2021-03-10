@@ -88,10 +88,11 @@ func main() {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/", home)
-	router.HandleFunc("/faq", faq)
-	router.HandleFunc("/contact", contact)
-	router.HandleFunc("/signup", usersController.New)
+	router.HandleFunc("/", home).Methods("GET")
+	router.HandleFunc("/faq", faq).Methods("GET")
+	router.HandleFunc("/contact", contact).Methods("GET")
+	router.HandleFunc("/signup", usersController.New).Methods("GET")
+	router.HandleFunc("/signup", usersController.Create).Methods("POST")
 
 	// router.NotFoundHandler = router.NewRoute().HandlerFunc(pageNotFound).GetHandler()
 	router.NotFoundHandler = http.HandlerFunc(pageNotFound)
