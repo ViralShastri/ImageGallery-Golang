@@ -13,6 +13,7 @@ var (
 	contactView      *views.View
 	faqView          *views.View
 	pageNotFoundView *views.View
+	signUpView       *views.View
 )
 
 func pageNotFound(w http.ResponseWriter, r *http.Request) {
@@ -70,11 +71,17 @@ func contact(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func signUp(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	must(signUpView.Render(w, nil))
+}
+
 func main() {
 
 	homeView = views.NewView("bootstrap", "views/home.gohtml")
 	contactView = views.NewView("bootstrap", "views/contact.gohtml")
 	faqView = views.NewView("bootstrap", "views/faq.gohtml")
+	signUpView = views.NewView("bootstrap", "views/signup.gohtml")
 	pageNotFoundView = views.NewView("bootstrap", "views/404.gohtml")
 
 	router := mux.NewRouter()
@@ -82,6 +89,7 @@ func main() {
 	router.HandleFunc("/", home)
 	router.HandleFunc("/faq", faq)
 	router.HandleFunc("/contact", contact)
+	router.HandleFunc("/signup", signUp)
 
 	// router.NotFoundHandler = router.NewRoute().HandlerFunc(pageNotFound).GetHandler()
 	router.NotFoundHandler = http.HandlerFunc(pageNotFound)
