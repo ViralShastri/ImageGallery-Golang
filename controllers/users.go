@@ -38,7 +38,9 @@ func (users *Users) New(rw http.ResponseWriter, r *http.Request) {
 //
 // POST /signup
 func (users *Users) Create(rw http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	fmt.Fprintln(rw, r.Form.Get("email"), r.Form.Get("password"))
+	if err := r.ParseForm(); err != nil {
+		panic(err)
+	}
+	fmt.Fprintln(rw, r.PostForm.Get("email"), r.PostForm.Get("password"))
 	fmt.Fprintln(rw, "This is a temporary response")
 }
