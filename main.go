@@ -21,7 +21,7 @@ func pageNotFound(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	statiController := controllers.NewStatic()
-	pageNotFoundView = views.NewView("bootstrap", "views/404.gohtml")
+	pageNotFoundView = views.NewView("bootstrap", "404")
 
 	usersController := controllers.NewUsers()
 
