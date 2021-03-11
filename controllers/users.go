@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/ViralShastri/usegolang/views"
-	"github.com/gorilla/schema"
 )
 
 // NewUsers is used to create a new Users controller.
@@ -45,15 +44,9 @@ func (users *Users) New(rw http.ResponseWriter, r *http.Request) {
 //
 // POST /signup
 func (users *Users) Create(rw http.ResponseWriter, r *http.Request) {
-	if err := r.ParseForm(); err != nil {
-		panic(err)
-	}
-
-	decoder := schema.NewDecoder()
 	var form SignupForm
-	if err := decoder.Decode(&form, r.PostForm); err != nil {
+	if err := parseForm(r, &form); err != nil {
 		panic(err)
 	}
-
 	fmt.Fprintln(rw, form)
 }
