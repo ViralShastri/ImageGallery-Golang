@@ -7,7 +7,7 @@ import (
 	"github.com/ViralShastri/usegolang/controllers"
 	"github.com/ViralShastri/usegolang/views"
 	"github.com/gorilla/mux"
-)
+) 
 
 var (
 	homeView         *views.View
