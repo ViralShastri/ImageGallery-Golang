@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/ViralShastri/usegolang/views"
+import "github.com/ViralShastri/ImageGallery-Golang/views"
 
 // NewStatic is used to create a new Static controller.
 // This function will panic if the templates are not

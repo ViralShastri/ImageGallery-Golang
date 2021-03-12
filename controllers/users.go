@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ViralShastri/usegolang/views"
+	"github.com/ViralShastri/ImageGallery-Golang/views"
 )
 
 // NewUsers is used to create a new Users controller.

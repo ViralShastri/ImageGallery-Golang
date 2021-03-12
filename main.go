@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ViralShastri/usegolang/controllers"
-	"github.com/ViralShastri/usegolang/views"
+	"github.com/ViralShastri/ImageGallery-Golang/controllers"
+	"github.com/ViralShastri/ImageGallery-Golang/views"
 	"github.com/gorilla/mux"
 )
 

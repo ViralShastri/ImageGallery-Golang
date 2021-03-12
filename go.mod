@@ -1,4 +1,4 @@
-module github.com/ViralShastri/usegolang
+module github.com/ViralShastri/ImageGallery-Golang
 
 go 1.16
 
